@@ -28,7 +28,7 @@ $(function () {
      * Comment the function call out to remove the grid
      */
 
-    // drawGrid();
+    drawGrid()
 
     /////////////////////////////////////////////////
     //////////ONLY CHANGE BELOW THIS POINT///////////
@@ -39,8 +39,12 @@ $(function () {
     // You must decide the x position, y position, width, and height of the platforms
     // example usage: createPlatform(x,y,width,height)
 
-
-
+    createPlatform(0, 600, 200, 20);
+    createPlatform(200, 500, 200, 20);
+    createPlatform(700, 500, 200, 20);
+    createPlatform(700, 700, 200, 20);
+    createPlatform(1000, 600, 200, 20);
+    createPlatform(500, 400, 200, 20);
     
     // TODO 2
     // Create collectables
@@ -48,7 +52,9 @@ $(function () {
     // Your collectable choices are 'database' 'diamond' 'grace' 'kennedi' 'max' and 'steve'; more can be added if you wish
     // example usage: createCollectable(type, x, y, gravity, bounce)
 
-
+    createCollectable('diamond', 700, 650, 5, 0)
+    createCollectable('grace', 200, 450, 5, 0)
+    createCollectable('grace', 700, 300, 0, 0)
 
     
     // TODO 3
@@ -57,10 +63,11 @@ $(function () {
     // Your wall choices are: 'top' 'left' 'right' and 'bottom'
     // example usage: createCannon(side, position, delay, width, height)
 
-
-
+    createCannon('left', 675, 100, 10)
+    createCannon('right', 405, 1500, 10)
+    createCannon('top', 1105, 1500, 10)
     
-    /////////////////////////////////////////////////
+    //////////////////////////////////////////////
     //////////ONLY CHANGE ABOVE THIS POINT///////////
     /////////////////////////////////////////////////
   }
