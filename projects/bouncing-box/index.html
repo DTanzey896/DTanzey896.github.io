@@ -13,7 +13,7 @@
 
         .box {
             width: 100px;
-            height: 130px; 
+            height: 130px;
             background-color: transparent;
             position: absolute;
             top: 800px;
@@ -31,8 +31,8 @@
 
         .eye {
             position: absolute;
-            top: 20%; 
-            left: 25%; 
+            top: 20%;
+            left: 25%;
             width: 25px;
             height: 25px;
             background-color: white;
@@ -51,8 +51,8 @@
         }
 
         .counter {
-            font-size: 16px; 
-            color: rgb(255, 255, 255); 
+            font-size: 16px;
+            color: rgb(255, 255, 255);
             position: absolute;
             top: 50%;
             left: 50%;
@@ -93,11 +93,12 @@
             var boardWidth = board.width();
             var boardHeight = board.height();
             var outsideClicks = 0;
+            const maxSpeed = 20;
 
             setInterval(update, 50);
             box.on('click', handleBoxClick);
 
-            $('body').on('click', function(event) {
+            $('body').on('click', function (event) {
                 if (!$(event.target).closest('.box').length) {
                     outsideClicks++;
                     $('#outsideClicks').text(outsideClicks);
@@ -106,7 +107,7 @@
 
             let boxX = 0;
             let boxY = 100;
-            let speedX = 5; 
+            let speedX = 5;
             let speedY = 3;
             let points = 0;
 
@@ -115,15 +116,15 @@
                 boxY += speedY;
 
                 if (boxX < 0 || boxX >= boardWidth - box.width()) {
-                    speedX = -speedX; 
+                    speedX = -speedX;
                 }
 
                 if (boxY < 0 || boxY >= boardHeight - box.height()) {
-                    speedY = -speedY; 
+                    speedY = -speedY;
                 }
 
                 moveBoxTo(boxX);
-                box.css("top", boxY); 
+                box.css("top", boxY);
             }
 
             function moveBoxTo(newPositionX) {
@@ -131,15 +132,18 @@
             }
 
             function handleBoxClick() {
-                points += 1; 
-                speedX *= 1.1; 
-                speedY *= 1.1; 
+                points += 1;
+                speedX *= 1.1;
+                speedY *= 1.1;
 
-                boxX = 0; 
-                boxY = Math.random() * (boardHeight - box.height()); 
+                if (Math.abs(speedX) > maxSpeed) speedX = maxSpeed * Math.sign(speedX);
+                if (Math.abs(speedY) > maxSpeed) speedY = maxSpeed * Math.sign(speedY);
+
+                boxX = 0;
+                boxY = Math.random() * (boardHeight - box.height());
 
                 moveBoxTo(boxX);
-                box.css("top", boxY); 
+                box.css("top", boxY);
                 changeCounterText(points);
             }
 
