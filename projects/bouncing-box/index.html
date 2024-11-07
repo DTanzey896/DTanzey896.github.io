@@ -1,157 +1,164 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Whack A Bill</title>
     <script src="jquery.min.js"></script>
     <style>
-        body {
-            background-image: url(img/Untitled.png);
-            background-size: cover;
-        }
+      body {
+        background-image: url(img/Untitled.png);
+        background-size: cover;
+      }
 
-        .box {
-            width: 100px;
-            height: 130px;
-            background-color: transparent;
-            position: absolute;
-            top: 800px;
-            left: 0px;
-            clip-path: polygon(42.5% 0, 75% 50%, 0% 50%, 0 50%);
-            background-color: yellow;
-            border: 2px solid black;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 20px;
-            user-select: none;
-        }
+      .box {
+        width: 100px;
+        height: 130px;
+        background-color: transparent;
+        position: absolute;
+        top: 800px;
+        left: 0px;
+        clip-path: polygon(42.5% 0, 75% 50%, 0% 50%, 0 50%);
+        background-color: yellow;
+        border: 2px solid black;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        user-select: none;
+      }
 
-        .eye {
-            position: absolute;
-            top: 20%;
-            left: 25%;
-            width: 25px;
-            height: 25px;
-            background-color: white;
-            border-radius: 50%;
-            border: 2px solid rgb(6, 4, 4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+      .eye {
+        position: absolute;
+        top: 20%;
+        left: 25%;
+        width: 25px;
+        height: 25px;
+        background-color: white;
+        border-radius: 50%;
+        border: 2px solid rgb(6, 4, 4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
 
-        .pupil {
-            width: 15px;
-            height: 15px;
-            background-color: black;
-            border-radius: 50%;
-        }
+      .pupil {
+        width: 15px;
+        height: 15px;
+        background-color: black;
+        border-radius: 50%;
+      }
 
-        .counter {
-            font-size: 16px;
-            color: rgb(255, 255, 255);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
+      .counter {
+        font-size: 16px;
+        color: rgb(255, 255, 255);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
 
-        .board {
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
+      .board {
+        height: 100vh;
+        overflow: hidden;
+        position: relative;
+      }
 
-        .outside-counter {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            color: white;
-            font-size: 20px;
-        }
+      .outside-counter {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: white;
+        font-size: 20px;
+      }
     </style>
-</head>
+  </head>
 
-<body class="board">
-    <div class="outside-counter">Outside Clicks: <span id="outsideClicks">0</span></div>
+  <body class="board">
+    <div class="outside-counter">
+      Outside Clicks: <span id="outsideClicks">0</span>
+    </div>
     <div class="box">
-        <div class="eye">
-            <div class="pupil"></div>
-            <div class="counter">0</div>
-        </div>
+      <div class="eye">
+        <div class="pupil"></div>
+        <div class="counter">0</div>
+      </div>
     </div>
 
     <script>
-        (function () {
-            'use strict';
+          (function () {
+              'use strict';
 
-            var box = jQuery('.box');
-            var board = jQuery('.board');
-            var boardWidth = board.width();
-            var boardHeight = board.height();
-            var outsideClicks = 0;
-            const maxSpeed = 20;
+              var box = jQuery('.box');
+              var board = jQuery('.board');
+              var boardWidth = board.width();
+              var boardHeight = board.height();
+              var outsideClicks = 0;
+              const maxSpeed = 20;
 
-            setInterval(update, 50);
-            box.on('click', handleBoxClick);
+              setInterval(update, 50);
+              box.on('click', handleBoxClick);
 
-            $('body').on('click', function (event) {
-                if (!$(event.target).closest('.box').length) {
-                    outsideClicks++;
-                    $('#outsideClicks').text(outsideClicks);
-                }
-            });
+              $('body').on('click', function (event) {
+                  if (!$(event.target).closest('.box').length) {
+                      outsideClicks++;
+                      $('#outsideClicks').text(outsideClicks);
+                  }
+              });
 
-            let boxX = 0;
-            let boxY = 100;
-            let speedX = 5;
-            let speedY = 3;
-            let points = 0;
+              let boxX = 0;
+              let boxY = 100;
+              let speedX = 5;
+              let speedY = 3;
+              let points = 0;
 
-            function update() {
-                boxX += speedX;
-                boxY += speedY;
+              function update() {
+                  boxX += speedX;
+                  boxY += speedY;
 
-                if (boxX < 0 || boxX >= boardWidth - box.width()) {
-                    speedX = -speedX;
-                }
+                  if (boxX < 0 || boxX >= boardWidth - box.width()) {
+                      speedX = -speedX;
+                  }
 
-                if (boxY < 0 || boxY >= boardHeight - box.height()) {
-                    speedY = -speedY;
-                }
+                  if (boxY < 0 || boxY >= boardHeight - box.height()) {
+                      speedY = -speedY;
+                  }
 
-                moveBoxTo(boxX);
-                box.css("top", boxY);
-            }
+                  moveBoxTo(boxX);
+                  box.css("top", boxY);
+              }
 
-            function moveBoxTo(newPositionX) {
-                box.css("left", newPositionX);
-            }
+              function moveBoxTo(newPositionX) {
+                  box.css("left", newPositionX);
+              }
 
-            function handleBoxClick() {
-                points += 1;
-                speedX *= 1.1;
-                speedY *= 1.1;
+              function handleBoxClick() {
+      points += 1;
 
-                if (Math.abs(speedX) > maxSpeed) speedX = maxSpeed * Math.sign(speedX);
-                if (Math.abs(speedY) > maxSpeed) speedY = maxSpeed * Math.sign(speedY);
 
-                boxX = 0;
-                boxY = Math.random() * (boardHeight - box.height());
+      if (speedX < 0) {
+          speedX += -1.5;
+          speedY += -1.5; }
+      else {
+          speedX += 1.5;
+          speedY += 1.5; }
+      }
 
-                moveBoxTo(boxX);
-                box.css("top", boxY);
-                changeCounterText(points);
-            }
+                  if (Math.abs(speedX) > maxSpeed) speedX = maxSpeed * Math.sign(speedX);
+                  if (Math.abs(speedY) > maxSpeed) speedY = maxSpeed * Math.sign(speedY);
 
-            function changeCounterText(newText) {
-                box.find('.counter').text(newText);
-            }
-        })();
+                  boxX = 0;
+                  boxY = Math.random() * (boardHeight - box.height());
+
+                  moveBoxTo(boxX);
+                  box.css("top", boxY);
+                  changeCounterText(points);
+              }
+
+              function changeCounterText(newText) {
+                  box.find('.counter').text(newText);
+              }
+          })();
     </script>
-</body>
-
+  </body>
 </html>
