@@ -75,24 +75,21 @@ var circles = [];
 
                 // gone past the RIGHT side 
                 if (circle.x - circle.radius > canvas.width) {
-                    circle.x = 0; // Place on the left
+                    circle.x = -circle.radius; // reappear on the left
                 }
                 // Gone past the LEFT side 
                 if (circle.x + circle.radius < 0) {
-                    circle.x = canvas.width; // Place on the right
+                    circle.x = canvas.width + circle.radius; // reappear on the right
                 }
                 // gone past the BOTTOM side 
                 if (circle.y - circle.radius > canvas.height) {
-                    circle.y = 0; // Place on the top
+                    circle.y = -circle.radius; // reappear on the top
                 }
                 // gone past the TOP side
                 if (circle.y + circle.radius < 0) {
-                    circle.y = canvas.height; // Place on the bottom
+                    circle.y = canvas.height + circle.radius;; // reappear on the bottom
                 }
             
-            
-
-
             // YOUR TODO 6 CODE ENDS HERE //////////////////////////
         }
         
