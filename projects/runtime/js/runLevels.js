@@ -82,7 +82,7 @@ enemy.fadeOut();
           } else if (gameObject.type === "reward") {
               createReward(gameObject.x, gameObject.y);
           } else if (gameObject.type === "marker") {
-              createMarker(gameObject.x, gameObject.y); // Add this if you have a createMarker function
+              createMarker(gameObject.x, gameObject.y); 
           }
       }
 
