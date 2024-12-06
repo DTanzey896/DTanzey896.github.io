@@ -35,56 +35,56 @@ var runLevels = function (window) {
     createSawBlade(500, 600);
     createSawBlade(400, 300);
 
-  function createEnemy(x, y) {
-    var enemy = game.createGameItem("enemy", 25);
-    var redSquare = draw.rect(50, 50, "red");
-    redSquare.x = -25;
-    redSquare.y = -25;
-    enemy.addChild(redSquare);
-    enemy.x = x;
-    enemy.y = y;
-    enemy.velocityX = -2;
-    enemy.rotationalVelocity = -2;
-    game.addGameItem(enemy);
-    enemy.onPlayerCollision = function () {
-        game.changeIntegrity(-10);
-    };
-    enemy.onProjectileCollision = function () {
-        game.increaseScore(100);
-        enemy.fadeOut();
-    };
-}
-enemy.onProjectileCollision = function() {
-  game.increaseScore(100);
-enemy.fadeOut();
-}
- }
- createEnemy(400, groundY - 50)
- createEnemy(600, groundY - 50)
- createEnemy(800, groundY - 50)
+  //function createEnemy(x, y) {
+    //var enemy = game.createGameItem("enemy", 25);
+    //var redSquare = draw.rect(50, 50, "red");
+   // redSquare.x = -25;
+   // redSquare.y = -25;
+   // enemy.addChild(redSquare);
+   // enemy.x = x;
+   // enemy.y = y;
+  //  enemy.velocityX = -2;
+  //  enemy.rotationalVelocity = -2;
+  //  game.addGameItem(enemy);
+  //  enemy.onPlayerCollision = function () {
+   //     game.changeIntegrity(-10);
+  //  };
+ //   enemy.onProjectileCollision = function () {
+     //   game.increaseScore(100);
+   //     enemy.fadeOut();
+ //   };
+//}
+//enemy.onProjectileCollision = function() {
+//  game.increaseScore(100);
+//enemy.fadeOut();
+//}
+// }
+// createEnemy(400, groundY - 50)
+// createEnemy(600, groundY - 50)
+// createEnemy(800, groundY - 50)
 
- function createReward (x, y){
+// function createReward (x, y){
   
- }
+// }
 
     function startLevel() {
       // TODO 13 goes below here
-      var level = levelData[currentLevel];
-      var levelObjects = level.gameItems;
+     // var level = levelData[currentLevel];
+     // var levelObjects = level.gameItems;
       
-      for (var i = 0; i < levelObjects.length; i++) {
-          var gameObject = levelObjects[i];
+     // for (var i = 0; i < levelObjects.length; i++) {
+         // var gameObject = levelObjects[i];
           
-          if (gameObject.type === "sawblade") {
-              createSawBlade(gameObject.x, gameObject.y);
-          } else if (gameObject.type === "enemy") {
-              createEnemy(gameObject.x, gameObject.y);
-          } else if (gameObject.type === "reward") {
-              createReward(gameObject.x, gameObject.y);
-          } else if (gameObject.type === "marker") {
-              createMarker(gameObject.x, gameObject.y); 
-          }
-      }
+          //if (gameObject.type === "sawblade") {
+             // createSawBlade(gameObject.x, gameObject.y);
+         // } else if (gameObject.type === "enemy") {
+             // createEnemy(gameObject.x, gameObject.y);
+         // } else if (gameObject.type === "reward") {
+           //   createReward(gameObject.x, gameObject.y);
+         // } else if (gameObject.type === "marker") {
+           //   createMarker(gameObject.x, gameObject.y); 
+          //}
+      
 
 
       //////////////////////////////////////////////

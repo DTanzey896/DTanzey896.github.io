@@ -85,9 +85,9 @@ var background = function (window) {
     }
             // TODO 4: Part 2 - Parallax
             for (var i = 0; i < buildings.length; i++) {
-                buildings[i].x = buildings[i].x - 0.5; // Move buildings slower than the tree
-                if (buildings[i].x < -75) { // Check if building is off screen
-                    buildings[i].x = canvasWidth; // Reset to the right side
+                buildings[i].x = buildings[i].x - 0.5; // Move buildings slower than tree
+                if (buildings[i].x < -75) { // Check building is off screen
+                    buildings[i].x = canvasWidth; // Reset to right
                 }
             }
         
